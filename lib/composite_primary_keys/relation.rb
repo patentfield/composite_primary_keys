@@ -29,13 +29,13 @@ module ActiveRecord
       stmt.key = table[primary_key]
 
       # CPK
-      if @klass.composite?
-        stmt = Arel::UpdateManager.new
-        stmt.table(arel_table)
-        cpk_subquery(stmt)
-      else
+      #if @klass.composite?
+      #  stmt = Arel::UpdateManager.new
+      #  stmt.table(arel_table)
+      #  cpk_subquery(stmt)
+      #else
         stmt.wheres = arel.constraints
-      end
+      #end
       stmt.take(arel.limit)
       stmt.offset(arel.offset)
       stmt.order(*arel.orders)
@@ -74,13 +74,13 @@ module ActiveRecord
       stmt.key = table[primary_key]
 
       # CPK
-      if @klass.composite?
-        stmt = Arel::DeleteManager.new
-        stmt.from(arel_table)
-        cpk_subquery(stmt)
-      else
+      #if @klass.composite?
+      #  stmt = Arel::DeleteManager.new
+      #  stmt.from(arel_table)
+      #  cpk_subquery(stmt)
+      #else
         stmt.wheres = arel.constraints
-      end
+      #end
 
       stmt.take(arel.limit)
       stmt.offset(arel.offset)
